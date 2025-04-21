@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recomendações - Greenbot</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-800">
+  <div class="max-w-2xl mx-auto mt-10">
+    <h1 class="text-3xl font-bold mb-6 text-center">Recomendações de Apostas</h1>
+    <% if (recommendations.length > 0) { %>
+      <ul class="space-y-4">
+        <% recommendations.forEach(rec => { %>
+          <li class="p-4 bg-white rounded shadow">
+            <strong><%= rec.partida %></strong><br>
+            <span class="text-green-600"><%= rec.aposta %></span>
+          </li>
+        <% }); %>
+      </ul>
+    <% } else { %>
+      <p class="text-center">Nenhuma recomendação disponível no momento.</p>
+    <% } %>
+  </div>
+</body>
+</html>
