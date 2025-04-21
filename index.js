@@ -5,13 +5,15 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Rota inicial
 app.get('/', (req, res) => {
   res.send('Greenbot API está funcionando!');
 });
 
+// Buscar jogos da Série A (ID 2)
 async function fetchGames() {
   try {
-    const response = await axios.get(`https://api-futebol.com.br/v1/competitions/10/matches`, {
+    const response = await axios.get(`https://api-futebol.com.br/v1/competitions/2/matches`, {
       headers: {
         'Authorization': `Bearer ${process.env.API_KEY}`
       }
@@ -26,6 +28,7 @@ async function fetchGames() {
   }
 }
 
+// Buscar últimos 10 jogos de um time
 async function fetchTeamStats(teamId) {
   try {
     const response = await axios.get(`https://api-futebol.com.br/v1/teams/${teamId}/matches`, {
@@ -40,6 +43,7 @@ async function fetchTeamStats(teamId) {
   }
 }
 
+// Rota de recomendações
 app.get('/recommendations', async (req, res) => {
   const games = await fetchGames();
 
